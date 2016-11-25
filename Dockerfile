@@ -1,13 +1,8 @@
 FROM nginx:1.10
 
 RUN set -x; \
-	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 89DF5277 \
-	&& gpg -a --export 89DF5277 | apt-key add - \
-	&& echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list
-
-RUN set -x; \
 	apt-get update && apt-get upgrade; \
-	apt-get install -y php7.0 php7.0-fpm php7.0-gd php7.0-mysql php7.0-cli php7.0-common php7.0-curl php7.0-opcache php7.0-json php7.0-intl php7.0-mbstring php7.0-xml \
+	apt-get install -y php5 php5-fpm php5-gd php5-mysql php5-cli php5-common php5-curl php5-json php5-intl \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
