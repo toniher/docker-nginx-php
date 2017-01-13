@@ -5,13 +5,12 @@ language: bash
 script:
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 - docker build -t toniher/rpi-nginx-php .
-- if [ "$TRAVIS_BRANCH" == "raspbian" ]; then
-- TAG=latest
+after_success:
+- export TAG=latest
 - docker login -u="$DOCKER_HUB_USERNAME" -p="$DOCKER_HUB_PASSWORD"
 - docker tag toniher/rpi-nginx-php toniher/rpi-nginx-php:$TAG
 - docker push toniher/rpi-nginx-php:$TAG
 - docker push toniher/rpi-nginx-php
-- fi
 env:
   global:
   - secure: iNLJwSxizV2dWKh+gglvZwpWYsj9r6PX1ZCVLfZyEmQv+DpCzlxQnhzBuIPUJw1lzONak0irLUvx4JLm549ugtlSI/zTs+4a1GwXI1ACarIvFAQO2Bha60R4TpEM3GT4/gah6ZTaUQM3lvDCRESdjG0WBrUwq2b1r2sOzENsSnEy9PbZnDSHG9BrrcoNlqT6vCWCq0HlxkMr0jOKWDWoRKZiELLc6SZ7X9R9N7Wd4ykiWnLa4rtNvuqg5Kbyr1F4DnmIH+8ZWqWRDV0mhUYeCPIktTP7mca+Yii9BpLhkdAMgMA0E+HI60EfTxlft/dhJDfggO+VXEbr1lxZGgroyFHtnAgtC779RYzhVQD9f9wJbKPEDAaQ+O3COrzRWtbqwtn3Dz8Jp3WH6bXzisgkFDmCsNYPcCVetl1FcKg9KVrG2rXuWfdQxB4zWNuTgfmeOpogWhaycQPzlY76iosZmKaq4+QhjgHaLsF7RLTogJCy7Ny9aj5q1w/jI27i1kCStZt+2+GiotGOw4Ug65Om9b0186avhFBQOOTMv0lQ45z9o3fkfUiBRmogm6p89fkXz3MIwtNPkcSbjYPFSm6ChFhOY+My7mFynaOOv3ojC13FkfkmCVLGJASGRg2n7Z1owE+OpHcXBCjFbGeMiXnu+cQub5xm//Q9sMipRkNSCv0=
