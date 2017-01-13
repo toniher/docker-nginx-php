@@ -5,8 +5,7 @@ language: bash
 script:
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 - docker build -t toniher/rpi-nginx-php .
-after_success:
-- if [ "$TRAVIS_BRANCH" == "master" ]; then
+- if [ "$TRAVIS_BRANCH" == "raspbian" ]; then
 - TAG=latest
 - docker login -u="$DOCKER_HUB_USERNAME" -p="$DOCKER_HUB_PASSWORD"
 - docker tag toniher/rpi-nginx-php toniher/rpi-nginx-php:$TAG
