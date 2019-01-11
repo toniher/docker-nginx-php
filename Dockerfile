@@ -1,17 +1,14 @@
-FROM nginx:1.10
+FROM nginx:1.14
 
-RUN set -x; \
-	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 89DF5277 \
-	&& gpg -a --export 89DF5277 | apt-key add - \
-	&& echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list
+ARG COMPOSER_VERSION=1.8.0
 
 RUN set -x; \
 	apt-get update && apt-get upgrade; \
-	apt-get install -y php7.0 php7.0-fpm php7.0-gd php7.0-mysql php7.0-cli php7.0-common php7.0-curl php7.0-opcache php7.0-json php7.0-intl php7.0-mbstring php7.0-xml \
+	apt-get install -y php-fpm php-gd php-mysql php-cli php-common php-curl php-opcache php-json php-intl php-mbstring php-xml \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
-	libpng12-dev \
+	libpng-dev \
 	libbz2-dev \
 	libxslt-dev \
 	libldap2-dev \
@@ -34,5 +31,5 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
   && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }"
 
-RUN php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=1.2.0 && rm -rf /tmp/composer-setup.php
+RUN php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && rm -rf /tmp/composer-setup.php
 
