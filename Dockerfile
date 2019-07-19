@@ -1,6 +1,6 @@
 FROM nginx:1.14
 
-ARG COMPOSER_VERSION=1.8.0
+ARG COMPOSER_VERSION=1.8.6
 
 RUN set -x; \
 	apt-get update && apt-get upgrade; \
