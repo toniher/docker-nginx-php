@@ -1,13 +1,13 @@
-FROM balenalib/rpi-raspbian:jessie
+FROM balenalib/rpi-raspbian:stretch
 
 RUN set -x; \
 	gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-key CCD91D6111A06851 \
 	&& gpg -a --export CCD91D6111A06851 | apt-key add - \
-	&& echo "deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free" > /etc/apt/sources.list.d/mati75.list
+	&& echo "deb http://repozytorium.mati75.eu/raspbian stretch-backports main contrib non-free" > /etc/apt/sources.list.d/mati75.list
 
 RUN set -x; \
 	apt-get update && apt-get upgrade; \
-	apt-get install -y php7.0 php7.0-fpm php7.0-gd php7.0-mysql php7.0-cli php7.0-common php7.0-curl php7.0-opcache php7.0-json php7.0-intl php7.0-mbstring php7.0-xml \
+	apt-get install -y php7.1 php7.1-fpm php7.1-gd php7.1-mysql php7.1-cli php7.1-common php7.1-curl php7.1-opcache php7.1-json php7.1-intl php7.1-mbstring php7.1-xml \
 	nginx-full \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
