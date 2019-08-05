@@ -7,8 +7,7 @@ FROM balenalib/rpi-raspbian:buster
 
 RUN set -x; \
 	apt-get update && apt-get upgrade; \
-#	apt-get install -y php7.3 php7.3-fpm php7.3-gd php7.3-mysql php7.3-cli php7.3-common php7.3-curl php7.3-opcache php7.3-json php7.3-intl php7.3-mbstring php7.3-xml \
-	apt-get install -y php php-fpm php-gd php-mysql php-cli php-common php-curl php-opcache php-json php-intl php-mbstring php-xml \
+	apt-get install -y php7.3 php7.3-fpm php7.3-gd php7.3-mysql php7.3-cli php7.3-common php7.3-curl php7.3-opcache php7.3-json php7.3-intl php7.3-mbstring php7.3-xml \
 	nginx-full \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
