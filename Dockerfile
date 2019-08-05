@@ -30,6 +30,8 @@ RUN set -x; \
 
 # Using www-data user
 # RUN sed -i 's/user  nginx/user  www-data/g' /etc/nginx/nginx.conf
+# Workaround https://forums.balena.io/t/unable-to-complete-the-sense-application-help-please/19698/8
+RUN c_rehash
 
 # Setup the Composer installer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
