@@ -12,7 +12,7 @@ RUN set -x; \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
-	libpng12-dev \
+	libpng-dev \
 	libbz2-dev \
 	libxslt-dev \
 	libldap2-dev \
