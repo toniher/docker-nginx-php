@@ -7,10 +7,12 @@ script:
 - docker build -t toniher/rpi-nginx-php .
 after_success:
 - export TAG=latest
+- export TAG2=stretch
 - docker login -u="$DOCKER_HUB_USERNAME" -p="$DOCKER_HUB_PASSWORD"
 - docker tag toniher/rpi-nginx-php toniher/rpi-nginx-php:$TAG
+- docker tag toniher/rpi-nginx-php toniher/rpi-nginx-php:$TAG2
 - docker push toniher/rpi-nginx-php:$TAG
-- docker push toniher/rpi-nginx-php
+- docker push toniher/rpi-nginx-php:$TAG2
 env:
   global:
   - secure: fRH2+0Jt89tYoVlENIhL37SecdaLmhxKFsG0NdWNu7+LBGHB2DTh2E8sPcqtBm77j6WSbHlDkpEarF6dcl3ZWfyt+ijqKtNXNEuoqPzzXVFc3enVuKu95vz7fJoTzOr4ymHOuSfQj4xR6a9KaudBOZcNT3TYeRUWhfDhP4la5ue70ymjktLxgXVnLnquAJ3iNNa0SMtpQMc5pEQrm+IWD1UzBSGOPDUeLXpHqryrTxgKdM7um6XLJB5SG3JHMbao79M52rHOmyDLFZf46U2Qq9WDKU4keWlQIfygLtF09qhJ2ZVWQhtwiMq6xknkoEb9GRql+41zLzLVg0OaiJk3feECcsqE9A4fvRHDQ304aD/UNK8fExRw0corLvfqotttqACXYxueZsroAPCXtbmuz0Za7UVaduZ3N6jbzYwRXNQ+3aOLeIekPyd74JbqC06i6qa5UZJlF3jMT2yDOjRkI8I1Dw3fOo42fOqjMCgXUBFRs966jN8SU5IJEuMIJxlC0XxgION3k19/LSDZo+47AQklOkCy7R6Mg9qG7fWvPp3F2EjHAfbWLNjbkAkh41ERMk0cM5UiI92QxpUvCrU0HeE3ygLyxgAhRLhaVBrWDzhc0fpLtxGZQUPUT+u7VqCj0arpOxB57OWvranmNjgvW/gD4q6memIAnAukBJVV66k=
