@@ -1,6 +1,6 @@
-FROM nginx:1.18
+FROM nginx:1.23
 
-ARG COMPOSER_VERSION=2.0.10
+ARG COMPOSER_VERSION=2.5.1
 
 RUN set -x; \
 	apt-get update && apt-get -y upgrade;
@@ -15,7 +15,7 @@ RUN set -x; \
 		apt-get update && apt-get -y upgrade;
 
 RUN set -x; \
-	apt-get install -y php7.4-fpm php7.4-gd php7.4-mysql php7.4-cli php7.4-common php7.4-curl php7.4-opcache php7.4-json php7.4-intl php7.4-mbstring php7.4-xml \
+	apt-get install -y php8.1-fpm php8.1-gd php8.1-mysql php8.1-cli php8.1-common php8.1-curl php8.1-opcache php8.1-intl php8.1-mbstring php8.1-xml \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
