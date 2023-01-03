@@ -12,14 +12,13 @@ jobs:
       contents: read
     strategy:
       matrix:
-        branch: ['latest', 'origin/nginx-1.23-php-8.1-sury', 'origin/nginx-1.23-php-7.4', 'origin/nginx-1.18-php-7.4-sury', 'origin/nginx-1.16-php-7.3']
+        branch: ['latest', 'nginx-1.23-php-8.1-sury', 'nginx-1.23-php-7.4', 'nginx-1.18-php-7.4-sury', 'nginx-1.16-php-7.3']
     steps:
       -
         name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ matrix.branch }}
-          submodules: recursive
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
