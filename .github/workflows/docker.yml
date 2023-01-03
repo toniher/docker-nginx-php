@@ -12,7 +12,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        branch: ['latest', 'nginx-1.23-php-8.1-sury', 'nginx-1.23-php-7.4', 'nginx-1.18-php-7.4-sury', 'nginx-1.16-php-7.3']
+        branch: ['master', 'nginx-1.23-php-8.1-sury', 'nginx-1.23-php-7.4', 'nginx-1.18-php-7.4-sury', 'nginx-1.16-php-7.3']
     steps:
       -
         name: Checkout
@@ -36,13 +36,20 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      -
-        name: Push Docker
+      - name: Sets env vars for Docker image
+        run: |
+          echo "DOCKER_IMAGE_BRANCH=latest" >> $GITHUB_ENV
+        if: ${{ matrix.branch == 'master' }}
+      - name: Sets env vars for Docker image
+        run: |
+          echo "DOCKER_IMAGE_BRANCH=${{ matrix.branch }}" >> $GITHUB_ENV
+        if: ${{ matrix.branch != 'master' }}
+      - name: Push Docker
         uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_ACCOUNT }}/nginx-php:${{ matrix.branch }}
-            ghcr.io/${{ github.repository_owner }}/docker-nginx-php:${{ matrix.branch }}
+            ${{ secrets.DOCKERHUB_ACCOUNT }}/nginx-php:${{ env.DOCKER_IMAGE_BRANCH }}
+            ghcr.io/${{ github.repository_owner }}/docker-nginx-php:${{ env.DOCKER_IMAGE_BRANCH }}
