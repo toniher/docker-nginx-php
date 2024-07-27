@@ -12,7 +12,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        branch: ['master', 'nginx-1.23-php-8.1-sury', 'nginx-1.23-php-7.4']
+        branch: ['master', 'nginx-1.23-php-8.1-sury', 'nginx-1.23-php-7.4', 'nginx-1.27-php-8.2']
     steps:
       -
         name: Checkout

@@ -1,6 +1,6 @@
-FROM nginx:1.23
+FROM nginx:1.27
 
-ARG COMPOSER_VERSION=2.5.1
+ARG COMPOSER_VERSION=2.7.7
 
 RUN set -x; \
 	apt-get update && apt-get upgrade; \
