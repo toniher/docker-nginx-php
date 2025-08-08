@@ -1,4 +1,4 @@
-FROM nginx:1.23
+FROM nginx:1.27
 
 ARG COMPOSER_VERSION=2.5.1
 
